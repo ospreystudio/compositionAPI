@@ -17,6 +17,7 @@
 import AddRecipe from '@/components/AddRecipe'
 import RecipeDetail from '@/components/RecipeDetail'
 import RecipeList from '@/components/RecipeList'
+import {useRecipes} from "./composition/recipes";
 
 
 export default {
@@ -26,24 +27,11 @@ export default {
     RecipeList,
     RecipeDetail
   },
-  data() {
-    return {
-      recipes: [],
-      current: null
-    }
+  setup() {
+      return {
+        ...useRecipes()
+      }
   },
-  methods: {
-    addRecipe(recipe) {
-      this.recipes.push(recipe)
-    },
-    selectRecipe(id) {
-      this.current = this.recipes.find(r => r.id === id)
-    },
-    removeRecipe(id) {
-      this.current = null
-      this.recipes = this.recipes.filter(r => r.id !== id)
-    }
-  }
 }
 </script>
 
